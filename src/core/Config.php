@@ -14,7 +14,7 @@ class Config
             $content_item = str_replace(" ", "", $content_item);
             if (!empty($content_item)) {
                 $arr = explode("=", $content_item);
-                self::$data['env.' . $arr[0]] = $arr[1];
+                self::$data['env.' . trim($arr[0])] = trim($arr[1]);
             }
         }
     }
