@@ -51,7 +51,7 @@ class App
         $this->routes[] = ['ANY', $url, $handle];
     }
 
-    function run($method, $path, $headers, $params)
+    function runCommon($method, $path, $headers, $params)
     {
         $req = new Request;
         $req->setMethod($method);
@@ -102,14 +102,14 @@ class App
         $params = [];
         if (property_exists($event, 'body')) parse_str($event->body, $params);
 
-        return $this->run($method, $path, $headers, $params);
+        return $this->runCommon($method, $path, $headers, $params);
     }
 
-    function runCommon()
+    function run()
     {
         $server = Server::getInstance();
 
-        $data = $this->run($server->getHttpMethod(), $server->getPathInfo(), $server->getHeaders(), $server->getParams());
+        $data = $this->runCommon($server->getHttpMethod(), $server->getPathInfo(), $server->getHeaders(), $server->getParams());
 
         if ("string" == gettype($data)) echo $data;
 
