@@ -1,0 +1,18 @@
+{
+    "name": "tangpanqing/atom-framework",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "atom\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tangpanqing",
+            "email": "tangpanqing@qq.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
