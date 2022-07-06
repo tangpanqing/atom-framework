@@ -26,12 +26,12 @@ class DbLink
 
     protected function setConn()
     {
-        $driver = "";
-        $host = "";
-        $database = "";
-        $port = "";
-        $username = "";
-        $password = "";
+        $driver = Config::get('env.driver');
+        $host = Config::get('env.host');
+        $database = Config::get('env.database');
+        $port = Config::get('env.port');
+        $username = Config::get('env.username');
+        $password = Config::get('env.password');
 
         $options = [];
         $dsn = "$driver:host=$host; port=$port; dbname=$database";
