@@ -34,7 +34,13 @@ class Server
 
     public function getParams()
     {
-        return array_merge([], $_GET, $_POST);
+        $param = [];
+        if (isset($_SERVER['CONTENT_TYPE']) && $_SERVER['CONTENT_TYPE'] == "application/json") {
+            $arr = json_decode(file_get_contents("php://input"), true);
+            if (is_array($arr)) $param = $arr;
+        }
+
+        return array_merge([], $param, $_GET, $_POST);
     }
 
     public function isTencentCloud(): bool
