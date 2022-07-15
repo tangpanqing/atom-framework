@@ -93,8 +93,13 @@ class Db
         }
 
         $db = new self();
-        $db->table_name = $table_name;
+        $db->table_name = Config::get('env.prefix').$table_name;
         return $db;
+    }
+
+    public function orderByDesc($key){
+        $this->condition['order'][] = [$key, 'DESC'];
+        return $this;
     }
 
     public static function toUnderLine($camelCaps): string
@@ -124,8 +129,17 @@ class Db
 
     protected function find()
     {
+        $order = "";
+        if(isset($this->condition['order'])){
+            foreach ($this->condition['order'] as $v){
+                $field = $v[0];
+                $type = $v[1];
+                $order .= " ORDER BY ".$v[0]." ".$v[1];
+            }
+        }
+
         $bind = [];
-        $sql = "SELECT " . $this->handleField() . " FROM " . $this->table_name . $this->handleWhere($bind) . $this->handleGroup() . $this->handleLimit();
+        $sql = "SELECT " . $this->handleField() . " FROM " . $this->table_name . $this->handleWhere($bind) . $this->handleGroup() . $order. $this->handleLimit();
 
         $pdo = self::getPdo();
         $state = $pdo->prepare($sql);

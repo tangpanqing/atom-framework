@@ -2,6 +2,8 @@
 
 namespace atom\traits;
 
+use Exception;
+
 trait ModelTrait
 {
     public function toArray(): array
@@ -29,5 +31,21 @@ trait ModelTrait
         }
 
         return $obj;
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function __set($pop, $val)
+    {
+        throw new Exception('不允许使用未定义的属性和方法' . $pop);
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function __get($pop)
+    {
+        throw new Exception('不允许使用未定义的属性和方法' . $pop);
     }
 }
