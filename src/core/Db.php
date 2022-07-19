@@ -22,17 +22,17 @@ class Db
 
     public static function beginTransaction()
     {
-        return self::getPdo()->query("BEGIN");
+        return self::getPdo()->beginTransaction();
     }
 
     public static function commit()
     {
-        return self::getPdo()->query("COMMIT");
+        return self::getPdo()->commit();
     }
 
     public static function rollback()
     {
-        return self::getPdo()->query("ROLLBACK");
+        return self::getPdo()->rollBack();
     }
 
     public static function raw($str): DbRaw
