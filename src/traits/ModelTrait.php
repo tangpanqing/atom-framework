@@ -36,7 +36,7 @@ trait ModelTrait
     /**
      * @throws Exception
      */
-    protected function __set($pop, $val)
+    public function __set($pop, $val)
     {
         throw new Exception('不允许使用未定义的属性和方法' . $pop);
     }
@@ -44,7 +44,7 @@ trait ModelTrait
     /**
      * @throws Exception
      */
-    protected function __get($pop)
+    public function __get($pop)
     {
         throw new Exception('不允许使用未定义的属性和方法' . $pop);
     }
