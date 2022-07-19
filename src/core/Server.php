@@ -45,8 +45,6 @@ class Server
 
     public function isTencentCloud(): bool
     {
-        if (isset($_SERVER['TENCENTCLOUD_RUNENV'])) return true;
-
-        return false;
+        return isset($_SERVER['TENCENTCLOUD_RUNENV']);
     }
 }
