@@ -20,17 +20,17 @@ class Db
         return !empty($this->findOne());
     }
 
-    public static function beginTransaction()
+    public static function beginTransaction(): bool
     {
         return self::getPdo()->beginTransaction();
     }
 
-    public static function commit()
+    public static function commit(): bool
     {
         return self::getPdo()->commit();
     }
 
-    public static function rollback()
+    public static function rollback(): bool
     {
         return self::getPdo()->rollBack();
     }
